@@ -190,8 +190,8 @@ export default class ViewTransformer extends React.Component {
     let dx = gestureState.moveX - gestureState.previousMoveX
     let dy = gestureState.moveY - gestureState.previousMoveY
     console.log(this.state.scale, gestureState.dy, gestureState.dx);
-
-    if(this.state.scale <=1.05 && (gestureState.dy>200 || gestureState.dy<-200)){
+    let distanceMoved = Math.sqrt(Math.pow(gestureState.dy,2)+Math.pow(gestureState.dx, 2))
+    if(this.state.scale <=1.05 && (distanceMoved>125)){
       this.props.closeModal();
       console.log("Swiped up");
       return false;
